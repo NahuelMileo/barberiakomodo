@@ -115,24 +115,6 @@ const Contact = () => {
                 </CardContent>
               </Card>
             ))}
-
-            {/* Call to Action */}
-            <div className="bg-gradient-primary shadow-glow rounded-2xl p-8 text-center">
-              <h3 className="text-primary-foreground mb-4 text-2xl font-bold">
-                Ready to Transform Your Look?
-              </h3>
-              <p className="text-primary-foreground/90 mb-6">
-                Don't wait – book your appointment today and experience the
-                Komodo difference.
-              </p>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white/20 bg-white/10 text-white hover:bg-white/20"
-              >
-                Call Now: (555) 123-4567
-              </Button>
-            </div>
           </div>
         </div>
       </div>
