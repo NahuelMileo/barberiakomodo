@@ -63,7 +63,7 @@ const Contact = () => {
                   className="w-full bg-green-500 py-6 text-lg hover:bg-green-600"
                   onClick={() =>
                     window.open(
-                      "https://wa.me/5551234567?text=Hi! I would like to book an appointment at Komodo Barber.",
+                      "https://wa.me/+59899483830?text=Buenos días, para reservar un horario.",
                       "_blank",
                     )
                   }
