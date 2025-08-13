@@ -1,10 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const navLinks = [
     { name: "Inicio", href: "#home" },
@@ -14,8 +16,23 @@ const Nav = () => {
     { name: "Contactanos", href: "#contact" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80); // cambia a true al bajar un poco
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="border-border/50 fixed top-0 right-0 left-0 z-50 border-b text-white backdrop-blur-lg">
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`border-border/50 fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-lg ${
+        scrolled ? "bg-white/80 text-black" : "bg-transparent text-white"
+      }`}
+    >
       <div className="container mx-auto px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -84,7 +101,7 @@ const Nav = () => {
           </div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
