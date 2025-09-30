@@ -45,7 +45,7 @@ const Services = () => {
       title: "Corte + barba",
       description:
         "Todo en uno: corte de pelo y cuidado de barba para salir listo.",
-      price: "$300",
+      price: "$400",
       image: beardImage,
       features: ["Corte y peinado", "Perfilado de barba"],
     },
