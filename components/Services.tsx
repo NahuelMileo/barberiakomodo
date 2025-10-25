@@ -2,10 +2,12 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Scissors, Crown, Eye, User, Feather, Globe } from "lucide-react";
-import haircutImage from "../public/corte.jpg";
-import beardImage from "../public/beard-service.jpg";
-import mechas from "../public/mechas.jpg";
-import global from "../public/global.jpg";
+import haircutImage from "@/public/corte.jpg";
+import barba from "@/public/barba.jpg";
+import barba2 from "@/public/barba2.jpg";
+import mechas from "@/public/mechas.jpg";
+import global from "@/public/global.jpg";
+import cejas from "@/public/cejas.jpg";
 import Image from "next/image";
 import { Easing, motion } from "framer-motion";
 
@@ -28,7 +30,7 @@ const Services = () => {
       title: "Corte de barba",
       description: "Perfilado y modelado clásico, para dejarla prolija.",
       price: "$200",
-      image: beardImage,
+      image: barba,
       features: ["Limpieza de bordes", "Perfilado preciso"],
     },
     {
@@ -37,7 +39,7 @@ const Services = () => {
       description:
         "Damos forma y limpieza a tus cejas para que queden naturales y prolijas.",
       price: "$50",
-      image: haircutImage,
+      image: cejas,
       features: ["Limpieza y recorte", "Consulta rápida de forma"],
     },
     {
@@ -46,7 +48,7 @@ const Services = () => {
       description:
         "Todo en uno: corte de pelo y cuidado de barba para salir listo.",
       price: "$400",
-      image: beardImage,
+      image: barba2,
       features: ["Corte y peinado", "Perfilado de barba"],
     },
     {
