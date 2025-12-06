@@ -15,7 +15,7 @@ const Services = () => {
       icon: Scissors,
       title: "Corte de pelo",
       description: "Cortes a mano, adaptados a tu estilo y forma de cara.",
-      price: "$300",
+      price: "$350",
       image: haircutImage,
       features: [
         "Lavado y peinado",
@@ -45,7 +45,7 @@ const Services = () => {
       title: "Corte + barba",
       description:
         "Todo en uno: corte de pelo y cuidado de barba para salir listo.",
-      price: "$400",
+      price: "$450",
       image: beardImage,
       features: ["Corte y peinado", "Perfilado de barba"],
     },
