@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import fondoK from "../public/fondoK.png";
+import Link from "next/link";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -77,21 +78,23 @@ const Hero = () => {
             }`}
             style={{ transitionDelay: "1.1s" }}
           >
-            <Button
-              size="lg"
-              className="group relative transform overflow-hidden bg-red-800 px-12 py-6 text-lg transition-all duration-300 ease-out hover:scale-105 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/30 active:scale-95"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-              <span className="relative z-10">Reservar ahora</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="group relative transform overflow-hidden border-2 border-white/70 bg-transparent px-12 py-6 text-lg text-white backdrop-blur-sm transition-all duration-300 ease-out hover:scale-105 hover:bg-white hover:text-black hover:shadow-xl hover:shadow-white/20 active:scale-95"
-            >
-              <span className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></span>
-              <span className="relative z-10">Ver galería</span>
-            </Button>
+            <Link href="#contact">
+              <Button
+                size="lg"
+                className="group relative transform overflow-hidden bg-red-800 px-12 py-6 text-lg transition-all duration-300 ease-out hover:scale-105 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/30 active:scale-95"
+              >
+                Reservar ahora
+              </Button>
+            </Link>
+            <Link href="#services">
+              <Button
+                variant="outline"
+                size="lg"
+                className="group relative transform overflow-hidden border-2 border-white/70 bg-transparent px-12 py-6 text-lg text-white backdrop-blur-sm transition-all duration-300 ease-out hover:scale-105 hover:bg-white hover:text-black hover:shadow-xl hover:shadow-white/20 active:scale-95"
+              >
+                Ver galería
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
