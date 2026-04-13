@@ -58,7 +58,7 @@ const Hero = () => {
 
           {/* Decorative line */}
           <motion.div
-            className="mx-auto my-8 h-px w-24 bg-white/30"
+            className="mx-auto my-8 h-px w-24 bg-accent"
             initial={{ scaleX: 0 }}
             animate={isLoaded ? { scaleX: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -85,7 +85,7 @@ const Hero = () => {
             <Link href="#contact">
               <Button
                 size="lg"
-                className="min-w-[200px] bg-white px-8 py-6 text-sm font-medium tracking-wide uppercase text-black transition-all duration-300 hover:bg-white/90"
+                className="min-w-[200px] bg-accent px-8 py-6 text-sm font-medium tracking-wide uppercase text-accent-foreground transition-all duration-300 hover:bg-accent/90"
               >
                 Reservar cita
               </Button>

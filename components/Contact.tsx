@@ -58,8 +58,8 @@ const Contact = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-secondary">
-                    <info.icon className="h-5 w-5 text-foreground" />
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-accent/20">
+                    <info.icon className="h-5 w-5 text-accent" />
                   </div>
                   <div>
                     <h4 className="mb-1 font-medium text-foreground">

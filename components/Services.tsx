@@ -82,7 +82,7 @@ const Services = () => {
                 
                 {/* Price badge */}
                 <div className="absolute top-6 right-6">
-                  <span className="bg-background/90 backdrop-blur-sm px-4 py-2 text-sm font-medium text-foreground rounded-full">
+                  <span className="bg-accent px-4 py-2 text-sm font-medium text-accent-foreground rounded-full">
                     {service.price}
                   </span>
                 </div>
@@ -91,8 +91,8 @@ const Services = () => {
               {/* Content */}
               <div className="p-8">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary">
-                    <service.icon className="h-5 w-5 text-foreground" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/20">
+                    <service.icon className="h-5 w-5 text-accent" />
                   </div>
                   <h3 className="font-serif text-2xl font-normal text-foreground">
                     {service.title}
