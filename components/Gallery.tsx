@@ -1,233 +1,106 @@
 "use client";
+
 import haircutImage from "../public/corte.jpg";
 import beardImage from "../public/beard-service.jpg";
 import toolsImage from "../public/maquinas.jpg";
 import interiorImage from "../public/fondoK.jpg";
 import Image from "next/image";
-import { Easing, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Gallery = () => {
   const galleryItems = [
     {
       image: haircutImage,
       title: "Cortes de Precisión",
-      category: "Cortes de Pelo",
+      span: "col-span-1 row-span-1 md:col-span-2 md:row-span-2",
     },
-    // {
-    //   image: beardImage,
-    //   title: "Arte en Barbas",
-    //   category: "Cuidado de Barba",
-    // },
     {
       image: toolsImage,
       title: "Herramientas Profesionales",
-      category: "Equipamiento",
+      span: "col-span-1 row-span-1",
     },
     {
       image: interiorImage,
       title: "Nuestro Espacio",
-      category: "Ambiente",
-    },
-    {
-      image: haircutImage,
-      title: "Transformación de Estilo",
-      category: "Antes y Después",
+      span: "col-span-1 row-span-1",
     },
     {
       image: beardImage,
       title: "Cuidado Clásico",
-      category: "Tradicional",
+      span: "col-span-1 row-span-1 md:col-span-2",
     },
   ];
-  const easeOut: Easing = [0.33, 1, 0.68, 1];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-      scale: 0.9,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: easeOut,
-      },
-    },
-  };
-
-  const headerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: easeOut,
-      },
-    },
-  };
 
   return (
-    <section id="gallery" className="bg-gradient-hero py-24">
+    <section id="gallery" className="bg-background py-32">
       <div className="container mx-auto px-6">
+        {/* Section Header */}
         <motion.div
-          className="mb-16 text-center"
-          variants={headerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.h2
-            className="mb-6 text-4xl font-bold md:text-5xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Galería
-          </motion.h2>
-          <motion.p
-            className="text-muted-foreground mx-auto max-w-3xl text-xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Mira algunos de los cortes, estilos y trabajos que hacemos en
-            Komodo. Aquí vas a ver el resultado real de nuestra dedicación y
-            experiencia, para que te inspires y veas que acá siempre vas a salir
-            bien.
-          </motion.p>
+          <div>
+            <p className="mb-4 text-sm font-medium tracking-[0.2em] uppercase text-muted-foreground">
+              Galería
+            </p>
+            <h2 className="font-serif text-4xl font-normal text-foreground md:text-5xl">
+              Nuestro trabajo
+            </h2>
+          </div>
+          <p className="mt-6 max-w-md text-muted-foreground md:mt-0 md:text-right">
+            Resultados reales de nuestra dedicación y experiencia.
+          </p>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {galleryItems.map((item, index) => (
             <motion.div
               key={index}
-              className="group bg-card shadow-elegant hover:shadow-glow relative overflow-hidden rounded-2xl transition-all duration-500"
-              variants={itemVariants}
-              whileHover={{
-                y: -8,
-                scale: 1.02,
-                transition: { duration: 0.3 },
-              }}
-              whileTap={{ scale: 0.98 }}
+              className={`group relative overflow-hidden rounded-lg ${item.span}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="aspect-square overflow-hidden">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="relative h-full w-full"
-                >
-                  <Image
-                    fill={true}
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    className="relative h-full w-full object-cover"
-                  />
-                </motion.div>
-              </div>
-
-              <motion.div
-                className="from-background/90 absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 group-hover:opacity-100"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div
-                  className="absolute right-6 bottom-6 left-6"
-                  initial={{ y: 20, opacity: 0 }}
-                  whileHover={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                >
-                  <motion.div
-                    className="text-primary mb-1 text-sm font-medium"
-                    initial={{ x: -10, opacity: 0 }}
-                    whileHover={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
-                  >
-                    {item.category}
-                  </motion.div>
-                  <motion.h3
-                    className="text-foreground text-xl font-bold"
-                    initial={{ x: -10, opacity: 0 }}
-                    whileHover={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
-                  >
+              <div className="relative aspect-square h-full w-full overflow-hidden">
+                <Image
+                  fill
+                  src={item.image}
+                  alt={item.title}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/40" />
+                
+                {/* Title on hover */}
+                <div className="absolute inset-0 flex items-end p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <h3 className="text-lg font-medium text-white">
                     {item.title}
-                  </motion.h3>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                className="bg-primary/90 text-primary-foreground absolute top-4 left-4 rounded-full px-3 py-1 text-sm font-medium backdrop-blur-sm"
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.1 + 0.3,
-                  type: "spring",
-                  stiffness: 200,
-                }}
-                whileHover={{ scale: 1.05 }}
-              >
-                {item.category}
-              </motion.div>
+                  </h3>
+                </div>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
+        {/* Instagram CTA */}
         <motion.div
-          className="mt-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="mt-16 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <motion.div
-            className="text-muted-foreground inline-flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.div
-              className="bg-primary h-px w-8"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 1 }}
-            ></motion.div>
-            <span className="text-sm font-medium">
-              Siguenos para más transformaciones
+          <div className="inline-flex items-center gap-4 text-muted-foreground">
+            <div className="h-px w-12 bg-border" />
+            <span className="text-sm font-medium tracking-wider">
+              Más en Instagram
             </span>
-            <motion.div
-              className="bg-primary h-px w-8"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 1 }}
-            ></motion.div>
-          </motion.div>
+            <div className="h-px w-12 bg-border" />
+          </div>
         </motion.div>
       </div>
     </section>

@@ -7,7 +7,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 export default function Page() {
   return (
-    <div>
+    <main id="home">
       <Nav />
       <Hero />
       <Services />
@@ -15,6 +15,6 @@ export default function Page() {
       <Gallery />
       <Contact />
       <Footer />
-    </div>
+    </main>
   );
 }

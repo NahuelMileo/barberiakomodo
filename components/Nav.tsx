@@ -1,8 +1,10 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,14 +13,14 @@ const Nav = () => {
   const navLinks = [
     { name: "Inicio", href: "#home" },
     { name: "Servicios", href: "#services" },
-    { name: "Sobre nosotros", href: "#about" },
+    { name: "Nosotros", href: "#about" },
     { name: "Galería", href: "#gallery" },
-    { name: "Contactanos", href: "#contact" },
+    { name: "Contacto", href: "#contact" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80); // cambia a true al bajar un poco
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -26,40 +28,47 @@ const Nav = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`border-border/50 fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-lg ${
-        scrolled ? "bg-white/80 text-black" : "bg-transparent text-white"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-background/95 backdrop-blur-md border-b border-border"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
-            <span className="text-2xl font-bold">KOMODO</span>
-          </div>
+          <Link href="#home" className="relative z-10">
+            <span className="font-serif text-2xl font-normal tracking-wide text-foreground">
+              KOMODO
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="hover:text-primary font-medium transition-colors duration-300"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
+          <div className="hidden md:flex md:items-center md:gap-12">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium tracking-wide text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button variant="default" size="sm">
-              Reservar ahora
-            </Button>
+            <Link href="#contact">
+              <Button
+                size="sm"
+                className="bg-foreground text-background hover:bg-foreground/90 px-6 text-xs font-medium tracking-wider uppercase"
+              >
+                Reservar
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -68,6 +77,7 @@ const Nav = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
+              className="text-foreground hover:bg-transparent"
             >
               {isOpen ? (
                 <X className="h-6 w-6" />
@@ -79,27 +89,43 @@ const Nav = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="bg-card/95 border-border/50 mt-2 space-y-1 rounded-lg border px-2 pt-2 pb-3 backdrop-blur-lg">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-foreground/80 hover:text-primary block px-3 py-2 transition-colors duration-300"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <div className="px-3 pt-2">
-                <Button variant="default" size="sm" className="w-full">
-                  Book Now
-                </Button>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="py-6 space-y-1">
+                {navLinks.map((link, index) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    className="block py-3 text-lg font-light text-foreground/80 transition-colors duration-300 hover:text-foreground"
+                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    {link.name}
+                  </motion.a>
+                ))}
+                <div className="pt-4">
+                  <Link href="#contact" onClick={() => setIsOpen(false)}>
+                    <Button
+                      size="lg"
+                      className="w-full bg-foreground text-background hover:bg-foreground/90 text-sm font-medium tracking-wider uppercase"
+                    >
+                      Reservar ahora
+                    </Button>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );
