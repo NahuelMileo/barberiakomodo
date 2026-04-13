@@ -26,7 +26,6 @@ const Hero = () => {
           className="object-cover"
         />
         {/* Simple dark overlay */}
-        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Content */}
@@ -71,7 +70,7 @@ const Hero = () => {
             animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            Cortes con precisión y estilo. Donde la tradición 
+            Cortes con precisión y estilo. Donde la tradición
             se encuentra con el cuidado moderno.
           </motion.p>
 
@@ -85,7 +84,7 @@ const Hero = () => {
             <Link href="#contact">
               <Button
                 size="lg"
-                className="min-w-[200px] bg-accent px-8 py-6 text-sm font-medium tracking-wide uppercase text-accent-foreground transition-all duration-300 hover:bg-accent/90"
+                className="min-w-[200px] bg-accent px-8 py-6 text-sm font-medium tracking-wide uppercase text-white transition-all duration-300 hover:bg-accent/90"
               >
                 Reservar cita
               </Button>
@@ -94,7 +93,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="min-w-[200px] border border-white/30 bg-transparent px-8 py-6 text-sm font-medium tracking-wide uppercase text-white transition-all duration-300 hover:bg-white/10 hover:border-white/50"
+                className="min-w-[200px] border border-white/30 bg-transparent px-8 py-6 text-sm font-medium tracking-wide uppercase text-white transition-all duration-300 hover:bg-white hover:text-black"
               >
                 Ver servicios
               </Button>
