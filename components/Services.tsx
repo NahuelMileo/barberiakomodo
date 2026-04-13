@@ -79,10 +79,10 @@ const Services = () => {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/30" />
-                
+
                 {/* Price badge */}
                 <div className="absolute top-6 right-6">
-                  <span className="bg-accent px-4 py-2 text-sm font-medium text-accent-foreground rounded-full">
+                  <span className="bg-accent px-4 py-2 text-sm font-medium text-white rounded-full">
                     {service.price}
                   </span>
                 </div>
