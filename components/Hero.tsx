@@ -5,99 +5,122 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import fondoK from "../public/fondoK.png";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setIsLoaded(true);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Background Image using next/image with priority */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
         <Image
           src={fondoK}
-          alt="Fondo Komodo"
+          alt="Barbería Komodo"
           fill
           priority
-          className={`object-cover transition-all duration-1000 ease-out ${
-            isLoaded ? "scale-100" : "scale-110"
-          }`}
-          style={{
-            transform: `translate(${mousePosition.x * 0.5}px, ${
-              mousePosition.y * 0.5
-            }px) scale(1.05)`,
-          }}
+          className="object-cover"
         />
-
-        {/* Overlay gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
-        <div className="animate-pulse-slow absolute inset-0 bg-gradient-to-r from-red-900/20 via-transparent to-red-900/20"></div>
+        {/* Simple dark overlay */}
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto max-w-5xl px-6 text-center">
-        <div
-          className={`transition-all duration-1000 ease-out ${
-            isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
+      <div className="relative z-10 container mx-auto max-w-4xl px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="mb-8">
-            <h1 className="relative text-5xl font-bold tracking-wider text-white md:text-7xl lg:text-9xl">
-              Komodo
-            </h1>
+          {/* Eyebrow text */}
+          <motion.p
+            className="mb-6 text-sm font-medium tracking-[0.3em] uppercase text-white/70"
+            initial={{ opacity: 0, y: 10 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Chuy, Uruguay
+          </motion.p>
 
-            <p
-              className={`mt-4 text-xl font-light tracking-wide text-gray-300 transition-all duration-700 ease-out md:text-2xl ${
-                isLoaded
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-4 opacity-0"
-              }`}
-              style={{ transitionDelay: "0.9s" }}
-            >
-              Barbería
-            </p>
-          </div>
+          {/* Main headline */}
+          <motion.h1
+            className="font-serif text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            Barbería Komodo
+          </motion.h1>
 
-          <div
-            className={`flex flex-col items-center justify-center gap-6 transition-all duration-700 ease-out sm:flex-row ${
-              isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-            }`}
-            style={{ transitionDelay: "1.1s" }}
+          {/* Decorative line */}
+          <motion.div
+            className="mx-auto my-8 h-px w-24 bg-white/30"
+            initial={{ scaleX: 0 }}
+            animate={isLoaded ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          />
+
+          {/* Tagline */}
+          <motion.p
+            className="mx-auto max-w-xl text-lg font-light leading-relaxed text-white/80 md:text-xl"
+            initial={{ opacity: 0, y: 10 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            Cortes con precisión y estilo. Donde la tradición 
+            se encuentra con el cuidado moderno.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.8 }}
           >
             <Link href="#contact">
               <Button
                 size="lg"
-                className="group relative transform overflow-hidden bg-red-800 px-12 py-6 text-lg transition-all duration-300 ease-out hover:scale-105 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/30 active:scale-95"
+                className="min-w-[200px] bg-white px-8 py-6 text-sm font-medium tracking-wide uppercase text-black transition-all duration-300 hover:bg-white/90"
               >
-                Reservar ahora
+                Reservar cita
               </Button>
             </Link>
             <Link href="#services">
               <Button
                 variant="outline"
                 size="lg"
-                className="group relative transform overflow-hidden border-2 border-white/70 bg-transparent px-12 py-6 text-lg text-white backdrop-blur-sm transition-all duration-300 ease-out hover:scale-105 hover:bg-white hover:text-black hover:shadow-xl hover:shadow-white/20 active:scale-95"
+                className="min-w-[200px] border border-white/30 bg-transparent px-8 py-6 text-sm font-medium tracking-wide uppercase text-white transition-all duration-300 hover:bg-white/10 hover:border-white/50"
               >
-                Ver galería
+                Ver servicios
               </Button>
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={isLoaded ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6, delay: 1.2 }}
+      >
+        <motion.div
+          className="flex flex-col items-center gap-2"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="text-xs font-medium tracking-widest uppercase text-white/50">
+            Scroll
+          </span>
+          <div className="h-8 w-px bg-white/30" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
