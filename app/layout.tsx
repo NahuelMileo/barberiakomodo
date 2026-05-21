@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "@/app/globals.css";
-import foto from "../public/fondoK.jpg";
+// import foto from "../public/fondoK.jpg";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,24 +13,33 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
+// export const metadata: Metadata = {
+//   title: "Barbería Komodo | Barbería en Chuy, Uruguay",
+//   description:
+//     "Barbería Komodo en Chuy, Uruguay. Cortes de cabello, arreglos de barba y estilo moderno para hombres. ¡Visítanos hoy mismo!",
+//   openGraph: {
+//     title: "Barbería Komodo | Chuy, Uruguay",
+//     description: "Cortes modernos y barbería de confianza en Chuy.",
+//     url: "https://barberiakomodo.com",
+//     siteName: "Barbería Komodo",
+//     images: [
+//       {
+//         url: foto.src,
+//         width: 1200,
+//         height: 630,
+//       },
+//     ],
+//     locale: "es_UY",
+//     type: "website",
+//   },
+// };
+
 export const metadata: Metadata = {
-  title: "Barbería Komodo | Barbería en Chuy, Uruguay",
-  description:
-    "Barbería Komodo en Chuy, Uruguay. Cortes de cabello, arreglos de barba y estilo moderno para hombres. ¡Visítanos hoy mismo!",
-  openGraph: {
-    title: "Barbería Komodo | Chuy, Uruguay",
-    description: "Cortes modernos y barbería de confianza en Chuy.",
-    url: "https://barberiakomodo.com",
-    siteName: "Barbería Komodo",
-    images: [
-      {
-        url: foto.src,
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "es_UY",
-    type: "website",
+  title: "Sitio en mantenimiento",
+  description: "Sitio en mantenimiento.",
+  robots: {
+    index: false,
+    follow: false,
   },
 };
 
